@@ -20,16 +20,16 @@ import 'constants.dart';
 class FlutterTruecaller {
   static const MethodChannel _channel =
       const MethodChannel('flutter_truecaller');
-  static StreamController<String> _callback = StreamController.broadcast();
+  static StreamController<String?> _callback = StreamController.broadcast();
   static StreamController<FlutterTruecallerException> _errors =
       StreamController.broadcast();
-  static StreamController<bool> _manualVerificationRequired =
+  static StreamController<bool?> _manualVerificationRequired =
       StreamController.broadcast();
   static StreamController<TruecallerProfile> _profileStream =
       StreamController.broadcast();
 
   /// Stream to receive callback from the Truecaller SDK
-  static Stream<String> get callback => _callback.stream;
+  static Stream<String?> get callback => _callback.stream;
 
   /// Stream to receive errors from the Truecaller SDK
   /// Errors are of type FlutterTruecallerException
@@ -38,7 +38,7 @@ class FlutterTruecaller {
   static Stream<FlutterTruecallerException> get errors => _errors.stream;
 
   /// Stream to receive boolean to know if manual verification is required
-  static Stream<bool> get manualVerificationRequired =>
+  static Stream<bool?> get manualVerificationRequired =>
       _manualVerificationRequired.stream;
 
   /// Stream to receive the verified user's profile
@@ -60,7 +60,7 @@ class FlutterTruecaller {
   /// If you want to use the SDK for verification of Truecaller users as well
   /// as non-Truecaller users powered by Truecaller's drop call / OTP,
   /// you should provide the scope value as FlutterTruecallerScope.SDK_OPTION_WITH_OTP
-  Future<String> initializeSDK({
+  Future<String?> initializeSDK({
     int consentMode: FlutterTruecallerScope.CONSENT_MODE_BOTTOMSHEET,
     Color buttonColor: Colors.blue,
     Color buttonTextColor: Colors.white,
@@ -76,7 +76,7 @@ class FlutterTruecaller {
     int sdkOptions: FlutterTruecallerScope.SDK_OPTION_WITHOUT_OTP,
   }) async {
     try {
-      final String result = await _channel.invokeMethod('initialize', {
+      final String? result = await _channel.invokeMethod('initialize', {
         "consentMode": consentMode,
         "buttonColor": buttonColor.value,
         "buttonTextColor": buttonTextColor.value,
@@ -152,7 +152,7 @@ class FlutterTruecaller {
           throw new ArgumentError('Unknown method ${call.method}');
       }
       return null;
-    });
+    } as Future<dynamic> Function(MethodCall)?);
   }
 
   /// You can trigger the Truecaller profile verification dialog
@@ -171,10 +171,10 @@ class FlutterTruecaller {
   ///
   /// Truecaller SDK v2.0 currently supports the verification for
   /// non-Truecaller users for Indian numbers only
-  Future<bool> requestVerification(String mobile) async {
+  Future<bool?> requestVerification(String mobile) async {
     if (mobile.length != 10)
       throw Exception("Phone number must be of 10 digits");
-    bool otpRequired = await _channel.invokeMethod("phone", mobile);
+    bool? otpRequired = await _channel.invokeMethod("phone", mobile);
     _setListener();
     return otpRequired;
   }
@@ -209,8 +209,8 @@ class FlutterTruecaller {
   // - Bengali (bn)
   // - Kannada (kn)
   // - Swahili (sw)
-  Future<String> setLocale(String locale) async {
-    String result = await _channel.invokeMethod("setLocale", locale);
+  Future<String?> setLocale(String locale) async {
+    String? result = await _channel.invokeMethod("setLocale", locale);
     return result;
   }
 }

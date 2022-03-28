@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _result = '';
+  String? _result = '';
   final FlutterTruecaller caller = FlutterTruecaller();
 
   @override
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               OutlineButton(
                 onPressed: () async {
-                  String result = await caller.initializeSDK(
+                  String? result = await caller.initializeSDK(
                     buttonColor: Colors.black,
                     buttonTextColor: Colors.white,
                     loginTextPrefix:
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
               ),
               OutlineButton(
                 onPressed: () async {
-                  String result =
+                  String? result =
                       await caller.setLocale(FlutterTruecallerLocales.Hindi);
                   setState(() {
                     _result = result;
@@ -80,7 +80,7 @@ class _MyAppState extends State<MyApp> {
                   await caller.getProfile();
                   FlutterTruecaller.manualVerificationRequired
                       .listen((required) {
-                    if (required)
+                    if (required!)
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (_) => Verify(),
@@ -94,19 +94,19 @@ class _MyAppState extends State<MyApp> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(_result ?? 'ERROR'),
               ),
-              StreamBuilder<String>(
+              StreamBuilder<String?>(
                 stream: FlutterTruecaller.callback,
                 builder: (context, snapshot) => Text(snapshot.data ?? ''),
               ),
               StreamBuilder<FlutterTruecallerException>(
                 stream: FlutterTruecaller.errors,
                 builder: (context, snapshot) =>
-                    Text(snapshot.hasData ? snapshot.data.errorMessage : ''),
+                    Text(snapshot.hasData ? snapshot.data!.errorMessage! : ''),
               ),
               StreamBuilder<TruecallerProfile>(
                 stream: FlutterTruecaller.trueProfile,
                 builder: (context, snapshot) =>
-                    Text(snapshot.hasData ? snapshot.data.firstName : ''),
+                    Text(snapshot.hasData ? snapshot.data!.firstName! : ''),
               ),
             ],
           ),

@@ -18,7 +18,7 @@ class _VerifyState extends State<Verify> {
 
   final FlutterTruecaller caller = FlutterTruecaller();
 
-  bool otpRequired = false;
+  bool? otpRequired = false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _VerifyState extends State<Verify> {
                 decoration: InputDecoration(labelText: "Last Name"),
               ),
             ),
-            if (otpRequired)
+            if (otpRequired!)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -69,7 +69,7 @@ class _VerifyState extends State<Verify> {
               ),
             OutlineButton(
               onPressed: () async {
-                if (otpRequired)
+                if (otpRequired!)
                   await caller.verifyOtp(
                       _firstName.text, _lastName.text, _otp.text);
                 else
@@ -78,19 +78,19 @@ class _VerifyState extends State<Verify> {
               },
               child: Text("Submit"),
             ),
-            StreamBuilder<String>(
+            StreamBuilder<String?>(
               stream: FlutterTruecaller.callback,
               builder: (context, snapshot) => Text(snapshot.data ?? ''),
             ),
             StreamBuilder<FlutterTruecallerException>(
               stream: FlutterTruecaller.errors,
               builder: (context, snapshot) =>
-                  Text(snapshot.hasData ? snapshot.data.errorMessage : ''),
+                  Text(snapshot.hasData ? snapshot.data!.errorMessage! : ''),
             ),
             StreamBuilder<TruecallerProfile>(
               stream: FlutterTruecaller.trueProfile,
               builder: (context, snapshot) =>
-                  Text(snapshot.hasData ? snapshot.data.firstName : ''),
+                  Text(snapshot.hasData ? snapshot.data!.firstName! : ''),
             ),
           ],
         ),

@@ -102,14 +102,14 @@ class FlutterTruecallerLocales {
 ///
 /// FlutterTruecallerException has two getters - errorMessage and errorCode
 class FlutterTruecallerException {
-  int _code;
-  String _message;
+  int? _code;
+  String? _message;
 
   // errorCode of the error
-  int get errorCode => _code;
+  int? get errorCode => _code;
 
   // errorMessage of the error
-  String get errorMessage => _message;
+  String? get errorMessage => _message;
 
   FlutterTruecallerException(this._code, this._message);
 
@@ -181,110 +181,110 @@ String errorString(int raw) {
 
 /// Truecaller profile data type
 class TruecallerProfile {
-  String _firstName;
-  String _lastName;
-  String _phoneNumber;
-  String _gender;
-  String _street;
-  String _city;
-  String _zipcode;
-  String _countryCode;
-  String _facebookId;
-  String _twitterId;
-  String _email;
-  String _url;
-  String _avatarUrl;
-  bool _isTrueName;
-  bool _isAmbassador;
-  String _companyName;
-  String _jobTitle;
-  String _payload;
-  String _signature;
-  String _signatureAlgorithm;
-  String _requestNonce;
-  bool _isSimChanged;
-  String _verificationMode;
-  int _verificationTimestamp;
-  String _userLocale;
-  String _accessToken;
+  String? _firstName;
+  String? _lastName;
+  String? _phoneNumber;
+  String? _gender;
+  String? _street;
+  String? _city;
+  String? _zipcode;
+  String? _countryCode;
+  String? _facebookId;
+  String? _twitterId;
+  String? _email;
+  String? _url;
+  String? _avatarUrl;
+  bool? _isTrueName;
+  bool? _isAmbassador;
+  String? _companyName;
+  String? _jobTitle;
+  String? _payload;
+  String? _signature;
+  String? _signatureAlgorithm;
+  String? _requestNonce;
+  bool? _isSimChanged;
+  String? _verificationMode;
+  int? _verificationTimestamp;
+  String? _userLocale;
+  String? _accessToken;
 
   // First Name
-  String get firstName => _firstName;
+  String? get firstName => _firstName;
 
   // Last Name
-  String get lastName => _lastName;
+  String? get lastName => _lastName;
 
   // Phone number
-  String get phoneNumber => _phoneNumber;
+  String? get phoneNumber => _phoneNumber;
 
   // Gender
-  String get gender => _gender;
+  String? get gender => _gender;
 
   // Street
-  String get street => _street;
+  String? get street => _street;
 
   // City
-  String get city => _city;
+  String? get city => _city;
 
   // Zipcode
-  String get zipcode => _zipcode;
+  String? get zipcode => _zipcode;
 
   // Country code
-  String get countryCode => _countryCode;
+  String? get countryCode => _countryCode;
 
   // User's Facebook id
-  String get facebookId => _facebookId;
+  String? get facebookId => _facebookId;
 
   // User's Twitter id
-  String get twitterId => _twitterId;
+  String? get twitterId => _twitterId;
 
   // user Email
-  String get email => _email;
+  String? get email => _email;
 
   // Url
-  String get url => _url;
+  String? get url => _url;
 
   // User avatar url
-  String get avatarUrl => _avatarUrl;
+  String? get avatarUrl => _avatarUrl;
 
   // Is name fetched from truecaller
-  bool get isTrueName => _isTrueName;
+  bool? get isTrueName => _isTrueName;
 
   // Is user a truecaller ambassador
-  bool get isAmbassador => _isAmbassador;
+  bool? get isAmbassador => _isAmbassador;
 
   // Company Name
-  String get companyName => _companyName;
+  String? get companyName => _companyName;
 
   // job Title
-  String get jobTitle => _jobTitle;
+  String? get jobTitle => _jobTitle;
 
   // Develop payload
-  String get payload => _payload;
+  String? get payload => _payload;
 
   // Truecaller's Signature
-  String get signature => _signature;
+  String? get signature => _signature;
 
   // Algorithm of the Signature
-  String get signatureAlgorithm => _signatureAlgorithm;
+  String? get signatureAlgorithm => _signatureAlgorithm;
 
   // Request Nonce
-  String get requestNonce => _requestNonce;
+  String? get requestNonce => _requestNonce;
 
   // Is sim changed by the user
-  bool get isSimChanged => _isSimChanged;
+  bool? get isSimChanged => _isSimChanged;
 
   // Mode of verification
-  String get verificationMode => _verificationMode;
+  String? get verificationMode => _verificationMode;
 
   // Verification Timestamp
-  int get verificationTimestamp => _verificationTimestamp;
+  int? get verificationTimestamp => _verificationTimestamp;
 
   // User locale
-  String get userLocale => _userLocale;
+  String? get userLocale => _userLocale;
 
   // Access token generated
-  String get accessToken => _accessToken;
+  String? get accessToken => _accessToken;
 
   /// Profile in the form of map
   Map<String, dynamic> toMap() {
